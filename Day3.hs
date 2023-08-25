@@ -10,7 +10,7 @@ priority x
   | otherwise = ord x - 96
 
 p1 = sum . map go . lines <$> readFile "d3" where
-  go = priority . fst . head . nub . filter (uncurry (==)) . cartProd . halves
+  go = priority . fst . head . filter (uncurry (==)) . cartProd . halves
   halves xs  = splitAt (length xs `div` 2) xs
   cartProd = uncurry $ liftA2 (,)
 
