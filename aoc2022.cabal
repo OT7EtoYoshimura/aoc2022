@@ -1,0 +1,17 @@
+cabal-version:      2.4
+name:               aoc2022
+version:            0.1.0.0
+author:             hanabi
+synopsis:           My Haskell solutions to Advent of Code 2022
+license:            AGPL-3.0-only
+license-file:       COPYING
+category:           aoc
+
+extra-source-files:
+    README
+    COPYING
+
+library
+    build-depends:    base ^>=4.16.4.0, extra, lens, split, directory-tree
+    hs-source-dirs:   .
+    default-language: Haskell2010
