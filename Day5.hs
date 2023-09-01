@@ -15,7 +15,7 @@ solve f = map head . uncurry (move f) . bimap crates inst . breakOn "\n\n" <$> r
 move _ crates [] = crates
 move f crates ([count, from, to]:rest) = move f newCrates rest where
   taken = f $ take count $ (crates !! pred from)
-  newCrates = crates & over (ix $ pred from) (drop count) & over (ix $ pred to) (taken++)
+  newCrates = crates & ix (pred from) %~ drop count & ix (pred to) %~ (++) taken
 
 crates = filter (not . null) . map (filter isUpper) . splitOn "   "  . concat . transpose . lines . head . splitOn "\n 1"
 inst = map (map (read :: String -> Int) . filter (all isDigit) . words) . lines . drop 2
