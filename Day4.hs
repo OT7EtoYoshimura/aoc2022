@@ -3,7 +3,7 @@ module Day4 where
 import Data.List
 import Data.List.Extra
 
-solve f = length . filter (== True) . map f . map pairs . lines <$> readFile "d4" where
+solve f = length . filter id . map (f . pairs) . lines <$> readFile "d4" where
   pairs = map ranges . splitOn ","
   ranges :: [Char] -> [Integer]
   ranges = uncurry enumFromTo . toTuple . map read . splitOn "-"
