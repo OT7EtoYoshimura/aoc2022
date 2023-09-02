@@ -11,7 +11,7 @@ data NewTree a = NewDir FileName [NewTree a] Integer
 
 p1 = sum . filter (100000 >=) <$> solve
 
-p2 = fmap (uncurry go) . unsnoc . sort <$> solve where
+p2 = fmap (head . uncurry go) . unsnoc . sort <$> solve where
   go xs root = dropWhile (\x -> 70000000 - root + x <= 30000000) xs
 
 solve = sizes . op . dirTree <$> readDirectoryWith return "day7/" where
