@@ -17,7 +17,7 @@ transPair = id &&& transpose
 transF  f = concatMap (uncurry f) . uncurry zip . second transpose
 revF  f g = map $ liftM2 f (g mapAccumL) (g mapAccumR)
 
-vis     f = snd . f (\max x -> if (x > max) then (x, True) else (max, False)) (-1)
+vis     f = snd . f (\max x -> if x > max then (x, True) else (max, False)) (-1)
 
 scenic  f = snd . f (\his x -> (x:his, applyWhen (scenic' x his /= length his) succ $ scenic' x his)) []
-scenic' x = length . takeWhile (\y -> x > y)
+scenic' x = length . takeWhile (x >)
